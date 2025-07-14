@@ -76,7 +76,8 @@ public class Libro {
    – diminuire del x% il prezzo del libro in oggetto.
     */ 
     public void applicaSconto(float x){
-     prezzo = prezzo - (prezzo / 100 * x);   
+     prezzo = prezzo - (prezzo / 100 * x);
+     prezzo = Math.round(prezzo); // arrotonda a due decimali
     }
     // gli altri metodi sono già presenti (costrutore e tostring)
 }
