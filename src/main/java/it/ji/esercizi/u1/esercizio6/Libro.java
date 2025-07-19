@@ -48,4 +48,14 @@ public class Libro {
     public void setNumeroPagine(int numeroPagine) {
         this.numeroPagine = numeroPagine;
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true; // Stessi riferimenti
+        if (obj == null || getClass() != obj.getClass()) return false; // Oggetto nullo o di tipo diverso
+
+        Libro libro = (Libro) obj;
+        return ISBN.equals(libro.ISBN); // Confronto basato su ISBN
+    }
 }
