@@ -4,9 +4,9 @@ public class Cliente {
 
     private String nome;
     private String cognome;
-    private int telefono;
+    private String telefono;
 
-    public Cliente(String nome, String cognome, int telefono) {
+    public Cliente(String nome, String cognome, String telefono) {
         this.nome = nome;
         this.cognome = cognome;
         this.telefono = telefono;
@@ -28,11 +28,11 @@ public class Cliente {
         this.cognome = cognome;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

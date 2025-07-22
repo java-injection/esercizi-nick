@@ -32,11 +32,11 @@ public class Campo {
     public List<Prenotazione> getPrenotazioni() {
         return prenotazioni;
     }
-//
 
     public void addPrenotazione(Prenotazione prenotazione) {
         prenotazioni.add(prenotazione);
     }
+
 
 
 
