@@ -9,7 +9,9 @@ package it.ji.esercizi.u1.esercizio7;
    – diminuire del x% il prezzo del libro in oggetto
 */
 public class Main {
-
+    public static void main(String[] args) {
+        System.out.println("ciao");
+    }
 
 
 }
