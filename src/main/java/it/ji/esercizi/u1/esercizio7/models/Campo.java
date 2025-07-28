@@ -37,6 +37,21 @@ public class Campo {
         prenotazioni.add(prenotazione);
     }
 
+    //metodo equals
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Campo) {
+            Campo campo = (Campo) obj;
+            return campo.getId() == id && campo.getNome().equals(nome);
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Campo{" + "nome=" + nome + ", id=" + id + ", prenotazioni=" + prenotazioni + '}';
+    }
+
 
 
 

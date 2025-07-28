@@ -1,9 +1,14 @@
 package it.ji.esercizi.u1.esercizio7;
 
 import it.ji.esercizi.u1.esercizio7.exceptions.CampoNotFoundException;
+import it.ji.esercizi.u1.esercizio7.exceptions.ConflictReservationException;
+import it.ji.esercizi.u1.esercizio7.exceptions.WrongReservationParamsException;
 import it.ji.esercizi.u1.esercizio7.models.Campo;
 import it.ji.esercizi.u1.esercizio7.models.Cliente;
+import it.ji.esercizi.u1.esercizio7.models.Prenotazione;
 import it.ji.esercizi.u1.esercizio7.models.TennisManager;
+
+import java.util.List;
 
 /*
  Definisci una classe Prenotazione (di un campo da tennis) contenente il nome del cliente e l’ora
@@ -83,21 +88,38 @@ public class Main {
                     }
                     System.out.println("Hai scelto il campo: " + campo.getNome());
 
+                    while(true) {
+                        System.out.println("Inserisci l'ora di inizio:");
+                        int inizio = new java.util.Scanner(System.in).nextInt();
+                        System.out.println("Inserisci l'ora di fine:");
+                        int fine = new java.util.Scanner(System.in).nextInt();
 
+                        Prenotazione prenotazione = new Prenotazione(cliente, inizio, fine, campo);
 
-
+                        try {
+                            tennisManager.addPrenotazione(prenotazione);
+                            break;
+                        } catch (WrongReservationParamsException | ConflictReservationException e) {
+                            System.out.println("ERRORE: " + e.getMessage());
+                        }
+                    }
                     //  4 chiediamo all'utente di inserire l'ora di inizio e di fine
 
-                    // 5 verificare che il campo sia disponibile rispetto all'ora di inizio e di fine
-                    // 6 se il campo non è disponibile, mostriamo un messaggio di errore
-                    // 7 se il campo è disponibile, mostriamo un messaggio di conferma e prenotiamo il campo
+                    System.out.println("Prenotazione effettuata con successo");
+                    break;
 
+                case 3:
+                    System.out.println("Utilizzo del campo ");
+                    List<Prenotazione> prenotazioni = tennisManager.getPrenotazioni();
+                    for (Prenotazione prenotazione : prenotazioni) {
+                        System.out.println("Cliente: " + prenotazione.getCliente().getNome() + " " + prenotazione.getCliente().getCognome());
+                        System.out.println("Campo: " + prenotazione.getCampo().getNome());
+                        System.out.println("Ora di inizio: " + prenotazione.getInizio());
+                        System.out.println("Ora di fine: " + prenotazione.getFine());
+                        System.out.println("-------------------------------------------------");
+                    }
+                    break;
 
-                    System.out.println("Inserisci l'ora di inizio:");
-                    int inizio = new java.util.Scanner(System.in).nextInt();
-                    System.out.println("Inserisci l'ora di fine:");
-                    int fine = new java.util.Scanner(System.in).nextInt();
-                    System.out.println("Prenotazione effettuata!");
                 default:
                     System.out.println("Il numero selezionato non è presente");
                     break;
