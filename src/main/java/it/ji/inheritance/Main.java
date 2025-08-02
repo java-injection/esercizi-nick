@@ -1,5 +1,6 @@
 package it.ji.inheritance;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class Main {
         cani.add(new Volpino("Bella1"));
         cani.add(new PastoreTedesco("Milo"));
         cani.add(new Volpino("Bella2"));
-
+        System.out.printf("che figata!");//ciao nico
         int numero_pastori = 0;
         String prova = "drogato";
         for (Cane cane : cani) {
