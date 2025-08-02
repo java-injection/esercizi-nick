@@ -1,7 +1,79 @@
 package it.ji.bancomat;
 
+
+import java.util.Scanner;
+
 public class Bancomat {
     public static void main(String[] args) {
+        Banca banca = new Banca();
+        Scanner in = new Scanner(System.in);
+        System.out.println();
+        System.out.println("Benvenuto al Bancomat");
+        while(true) {
+            System.out.println("1) inserisci carta");
+            System.out.println("2) esci");
+            System.out.println("-------------------------");
+            int scelta = in.nextInt();
+            switch (scelta) {
+                default:
+                    System.out.println("Scelta non valida");
+                case 1:
+                    System.out.println("Inserisci il codice della carta");
+                    String codice = in.nextLine();
+                    Carta carta = banca.getCardByCode(codice);
+                    if(carta == null) {
+                        System.out.println("Carta non trovata");
+                        break;
+                    }else{
+                        System.out.println("Inserisci il pin della carta");
+                        int pin = in.nextInt();
+                        if (pin == carta.getPin()) {
+                            System.out.println("Benvenuto " + carta.getNome() + " " + carta.getCognome());
+                            boolean consultazioneCarta = true;
+                            while (consultazioneCarta) {
+                                System.out.println("1) Deposito");
+                                System.out.println("2) Preleva");
+                                System.out.println("3) Saldo");
+                                System.out.println("4) Esci");
+                                int scelta2 = in.nextInt();
+                                switch (scelta2) {
+                                    case 1:
+                                        System.out.println("Inserisci l'importo da depositare");
+                                        float importo = in.nextFloat();
+                                        carta.setSaldo(carta.getSaldo() + importo);
+                                        break;
+                                    case 2:
+                                        System.out.println("Inserisci l'importo da prelevare");
+                                        importo = in.nextFloat();
+                                        if (carta.getSaldo() >= importo) {
+                                            carta.setSaldo(carta.getSaldo() - importo);
+                                        } else {
+                                            System.out.println("Saldo insufficiente");
+                                        }
+                                        break;
+                                    case 3:
+                                        System.out.println("Saldo attuale:" + carta.getSaldo());
+                                        break;
+                                    case 4:
+                                        System.out.println("Chiusura in corso...");
+                                        consultazioneCarta = false;
+                                        break;
+                                    default:
+                                        System.out.println("Scelta non valida");
+                                }
+                            }
+                        } else {
+                            System.out.println("Pin errato");
+                        }
+                    }
+
+                    break;
+                case 2:
+                    System.out.println("Chiusura in corso...");
+                    return;
+
+            }
+        }
      /*
         Quando si accede al bancomat compare un menù con le seguenti opzioni:
 1) Inserisci Carta

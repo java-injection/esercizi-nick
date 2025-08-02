@@ -25,16 +25,8 @@ public class Carta {
         return codiceCarta;
     }
 
-    public void setCodiceCarta(String codiceCarta) {
-        this.codiceCarta = codiceCarta;
-    }
-
     public int getPin() {
         return pin;
-    }
-
-    public void setPin(int pin) {
-        this.pin = pin;
     }
 
     public String getNome() {
