@@ -48,5 +48,7 @@ public class NumeriTerminantiCon0 {
         }else{
             System.out.println("Il vettore non è ok");
         }
-    }
+    }//meglio, ti cchiamo io
+
+
 }
