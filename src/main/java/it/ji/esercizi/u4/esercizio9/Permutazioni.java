@@ -3,6 +3,7 @@ package it.ji.esercizi.u4.esercizio9;
 import java.util.Scanner;
 
 /*Scrivi un programma che produca N permutazioni casuali dei numeri da 1 a 10, utilizzando un array di
+
  supporto, riempito con numeri da 1 a 10 in modo che non ve ne siano due uguali, dal quale per dieci
  volte se ne prende uno a caso, rimuovendolo e accodandolo all’array che contiene la permutazione.*/
 public class Permutazioni {
