@@ -1,10 +1,10 @@
-package it.ji.esercizi.u4.esercizio2;
+package it.ji.esercizi.u4.esercizio1;
 
 import java.util.Scanner;
 import java.util.Vector;
 
 public class NumeriCasualiCifre {
-    
+
 
     /*Scrivi un programma che generi una sequenza di numeri casuali con range (0–999), memorizzando i
     numeri in tre vettori che contengono rispettivamente numeri di una cifra, di due e di tre cifre. La ge
