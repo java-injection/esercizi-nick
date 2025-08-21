@@ -2,6 +2,9 @@ package it.ji.esercizi.files.esercizio3;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
 import java.util.Date;
 
 public class Pioggia {
@@ -34,31 +37,39 @@ public class Pioggia {
     }
 
     public void saveToFile() {
-        // codice per salvare il dato nel file Pioggia.dat
-
-        //controllare se il file esiste e se non esiste creare un file di testo con il nome Pioggia.dat
-        File pioggiaFile = new File("Pioggia.txt");
+        // Salva il record in formato binario su Pioggia.dat: [long timestamp][int quantity]
+        File pioggiaFile = new File("Pioggia.dat");
         if (!pioggiaFile.exists()) {
             System.out.println("Il file Pioggia.dat non esiste, lo creo");
             try {
                 pioggiaFile.createNewFile();
                 System.out.println("File creato con successo");
             } catch (IOException e) {
-                System.err.println("Errore nella creazione del file Pioggia.txt");
+                System.err.println("Errore nella creazione del file Pioggia.dat");
                 e.printStackTrace();
             }
         }
-        // salviamo i dati dentro [DATA] e [QUANTITY] separati da uno spazio
+        // Append del record binario (senza try-with-resources)
+        DataOutputStream out = null;
         try {
-            java.io.PrintWriter writer = new java.io.PrintWriter(pioggiaFile);
-            //format data into a string in the format "dd/MM/yyyy" using SimpleDateFormat
-            String data = new java.text.SimpleDateFormat("dd/MM/yyyy").format(this.data);
-            writer.println(data + " " + quantity);
-            writer.close();
-            System.out.println("Dati salvati con successo");
+            out = new DataOutputStream(
+                    new BufferedOutputStream(new FileOutputStream(pioggiaFile, true)));
+            out.writeLong(this.data.getTime());
+            out.writeInt(this.quantity);
+            out.flush();
+            System.out.println("Dati salvati con successo su Pioggia.dat");
         } catch (IOException e) {
-            System.err.println("Errore nella lettura del file Pioggia.txt");
+            System.err.println("Errore nella scrittura del file Pioggia.dat");
             e.printStackTrace();
+        } finally {
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    System.err.println("Errore nella chiusura del file Pioggia.dat");
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }
