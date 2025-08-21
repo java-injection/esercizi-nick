@@ -4,29 +4,35 @@ import java.util.Queue;
 
 public class Pila {
 
-    Nodo base = null;
-    Nodo top = null;
+    private Nodo top = null;
+
 
     public void push(String s) {
-        if(base == null) {
-            base = new Nodo(s);
-            top = base;
-        } else {
-            Nodo nuovo = new Nodo(s);
-            nuovo.setNext(top);
-            top = nuovo;
+        if(isEmpty()){
+            top = new Nodo(s);
+        }else{
+            Nodo nuovoNodo = new Nodo(s);
+            nuovoNodo.setNext(top);
+            top = nuovoNodo;
         }
     }
 
     public String pop() {
-        if(base == null) {
+        if(isEmpty()) {
             return null;
-        } else {
-            Nodo estratto = top;
-            String s = estratto.getElement();
-            top = estratto.getNext();
-            estratto.setNext(null);
-            return s;
+        }else{
+            Nodo n = top;
+            top = top.getNext();
+            return n.getElement();
+        }
+
+    }
+
+    public boolean isEmpty() {
+        if(top == null) {
+            return true;
+        }else {
+            return false;
         }
     }
 
