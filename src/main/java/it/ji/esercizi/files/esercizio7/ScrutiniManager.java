@@ -59,12 +59,14 @@ public class ScrutiniManager {
                     continue;
                 }
                 String nomeCompleto = campi[1];
-                String cognome = nomeCompleto;
+                String cognome = "";
                 String nome = "";
-                int spazio = nomeCompleto.indexOf(' ');
-                if (spazio >= 0) {
-                    cognome = nomeCompleto.substring(0, spazio);
-                    nome = nomeCompleto.substring(spazio + 1);
+                String[] partiNome = nomeCompleto.split(" ", 2);
+                if (partiNome.length >= 1) {
+                    cognome = partiNome[0];
+                }
+                if (partiNome.length >= 2) {
+                    nome = partiNome[1];
                 }
                 String giudizio = "";
                 if (campi.length >= 4) {
